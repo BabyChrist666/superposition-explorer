@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superposition Explorer - Feature Superposition Analysis</title>
+    <style>
+        :root {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent: #f0883e;
+            --accent-green: #3fb950;
+            --accent-blue: #58a6ff;
+            --border: #30363d;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header {
+            background: linear-gradient(135deg, #1f1a14 0%, #0d1117 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 60px 0;
+        }
+        h1 { font-size: 2.8rem; margin-bottom: 15px; }
+        .highlight { color: var(--accent); }
+        .subtitle { color: var(--text-secondary); font-size: 1.3rem; }
+        .badges { margin-top: 25px; display: flex; gap: 12px; flex-wrap: wrap; }
+        .badge { padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 500; }
+        .badge-green { background: rgba(63, 185, 80, 0.2); color: var(--accent-green); }
+        .badge-orange { background: rgba(240, 136, 62, 0.2); color: var(--accent); }
+        .badge-blue { background: rgba(88, 166, 255, 0.2); color: var(--accent-blue); }
+        section { padding: 70px 0; }
+        h2 { font-size: 1.9rem; margin-bottom: 35px; color: var(--accent); }
+        .equation-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            font-family: 'Consolas', monospace;
+            font-size: 1.3rem;
+            margin: 30px 0;
+        }
+        .equation-box .label { color: var(--text-secondary); font-size: 0.9rem; margin-top: 10px; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .feature-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            transition: border-color 0.2s;
+        }
+        .feature-card:hover { border-color: var(--accent); }
+        .feature-card h3 { color: var(--accent); margin-bottom: 15px; }
+        .feature-card p { color: var(--text-secondary); }
+        .code-block {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 25px;
+            overflow-x: auto;
+            font-family: 'Consolas', monospace;
+            font-size: 0.9rem;
+            margin: 25px 0;
+        }
+        .keyword { color: #ff7b72; }
+        .string { color: #a5d6ff; }
+        .function { color: #d2a8ff; }
+        .comment { color: #8b949e; }
+        .class { color: #7ee787; }
+        .stats { display: flex; gap: 50px; justify-content: center; margin: 50px 0; flex-wrap: wrap; }
+        .stat { text-align: center; }
+        .stat-value { font-size: 2.8rem; font-weight: bold; color: var(--accent); }
+        .stat-label { color: var(--text-secondary); }
+        .findings { background: var(--bg-tertiary); border-left: 4px solid var(--accent); padding: 25px; margin: 25px 0; border-radius: 0 8px 8px 0; }
+        .findings h4 { color: var(--accent); margin-bottom: 15px; }
+        .findings ul { color: var(--text-secondary); margin-left: 20px; }
+        .findings li { margin: 8px 0; }
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            padding: 35px 0;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        footer a { color: var(--accent); text-decoration: none; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Superposition <span class="highlight">Explorer</span></h1>
+            <p class="subtitle">Investigate polysemanticity and feature superposition in neural networks</p>
+            <div class="badges">
+                <span class="badge badge-green">68 Tests Passing</span>
+                <span class="badge badge-orange">Interpretability</span>
+                <span class="badge badge-blue">PyTorch 2.0+</span>
+            </div>
+        </div>
+    </header>
+
+    <section>
+        <div class="container">
+            <h2>What is Superposition?</h2>
+            <p style="color: var(--text-secondary); max-width: 800px;">
+                Neural networks can represent <strong style="color: var(--text-primary);">more features than dimensions</strong>
+                by using non-orthogonal directions. When features are sparse, interference is rare enough
+                that overlapping representations work.
+            </p>
+            <div class="equation-box">
+                <span style="color: var(--accent-blue);">n_features</span> >>
+                <span style="color: var(--accent-green);">n_hidden</span>
+                (if features are sparse)
+                <div class="label">The Superposition Hypothesis</div>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2>Core Components</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Toy Models</h3>
+                    <p>Simple bottleneck autoencoders that exhibit superposition. Train models with configurable sparsity and importance.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Interference Analysis</h3>
+                    <p>Measure pairwise interference between features. Compute I[i,j] = cos^2(w_i, w_j).</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Effective Dimensionality</h3>
+                    <p>How many "real" dimensions each feature uses. d_eff < 1 means sharing space with others.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Linear Probing</h3>
+                    <p>Test feature decodability. Measure polysemanticity - neurons responding to multiple features.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Quick Start</h2>
+            <div class="code-block">
+<code><span class="keyword">from</span> superposition_explorer <span class="keyword">import</span> (
+    <span class="class">ToyModelConfig</span>, train_toy_model, <span class="class">SuperpositionAnalyzer</span>
+)
+
+<span class="comment"># Configure: 100 features in 20 dimensions (5x superposition)</span>
+config = <span class="class">ToyModelConfig</span>(
+    n_features=<span class="string">100</span>,
+    n_hidden=<span class="string">20</span>,
+    sparsity=<span class="string">0.9</span>,
+)
+
+<span class="comment"># Train and analyze</span>
+model, losses = <span class="function">train_toy_model</span>(config)
+analyzer = <span class="class">SuperpositionAnalyzer</span>(model)
+interference = analyzer.<span class="function">compute_interference</span>(model.W)
+
+<span class="function">print</span>(<span class="string">f"Total interference: {interference.total_interference:.4f}"</span>)</code>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: var(--bg-secondary);">
+        <div class="container">
+            <h2>Key Findings</h2>
+            <div class="findings">
+                <h4>From "Toy Models of Superposition" (Anthropic)</h4>
+                <ul>
+                    <li><strong>Sparsity enables superposition</strong> - More sparse features = more can be packed</li>
+                    <li><strong>Importance matters</strong> - Important features get more orthogonal directions</li>
+                    <li><strong>Phase transitions</strong> - Sharp transitions between mono/polysemantic representations</li>
+                    <li><strong>Geometric structure</strong> - Features form regular polytopes in weight space</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-value">68</div>
+                    <div class="stat-label">Tests Passing</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Core Modules</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value">5x</div>
+                    <div class="stat-label">Superposition Ratio</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Based on <a href="https://transformer-circuits.pub/2022/toy_model/index.html">Toy Models of Superposition</a> by Anthropic</p>
+            <p style="margin-top: 15px;">
+                <a href="https://github.com/BabyChrist666/superposition-explorer">View on GitHub</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
