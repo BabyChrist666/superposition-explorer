@@ -2,9 +2,11 @@
 
 Investigate polysemanticity and feature superposition in neural networks. Tools for studying how networks encode more features than dimensions.
 
-[![Tests](https://img.shields.io/badge/tests-68%20passed-brightgreen)]()
-[![Python](https://img.shields.io/badge/python-3.9+-blue)]()
-[![PyTorch](https://img.shields.io/badge/pytorch-2.0+-red)]()
+[![Tests](https://github.com/BabyChrist666/superposition-explorer/actions/workflows/tests.yml/badge.svg)](https://github.com/BabyChrist666/superposition-explorer/actions/workflows/tests.yml)
+[![codecov](https://codecov.io/gh/BabyChrist666/superposition-explorer/branch/master/graph/badge.svg)](https://codecov.io/gh/BabyChrist666/superposition-explorer)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch 2.0+](https://img.shields.io/badge/pytorch-2.0+-ee4c2c.svg)](https://pytorch.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
 
